@@ -24,7 +24,6 @@ export default class App extends Component {
     this.setState(({data}) => ({
         data: data.filter(elem => elem.id !== id)
     }))
-    this.maxId;
   }
 
   addItem = (name, salary) => {
