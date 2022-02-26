@@ -1,29 +1,28 @@
-import { Component } from 'react';
 import './app-filter.css';
 
-export default class AppFilter extends Component {
-    render() {
+export default function AppFilter({filter, onUpdateFilter}) {
+    const buttonsData = [
+        {name: 'all', label: 'Все сотрудники'},
+        {name: 'increase', label: 'Сотрудники на повышение'},
+        {name: 'salary', label: 'З/П больше 1000$'},
+    ]
+
+    const buttons = buttonsData.map(({name, label}) => {
+        const active = filter === name;
         return (
-            <div className="btn-group">
-                <button 
-                    className="btn btn-light"
-                    type='button'
-                >
-                    Все сотрудники
-                </button>
-                <button 
-                    className="btn btn-outline-light"
-                    type='button'
-                >
-                    Сотрудники на повышение
-                </button>
-                <button 
-                    className="btn btn-outline-light"
-                    type='button'
-                >
-                    З/П больше 1000$
-                </button>
-            </div>
+            <button 
+                className={"btn" + (active ? ' btn-light' : ' btn-outline-light')}
+                type='button'
+                name={name}
+                onClick={(e) => onUpdateFilter(name)}>
+                {label}
+            </button>
         )
-    }
+    })
+
+    return (
+        <div className="btn-group">
+            {buttons}
+        </div>
+    )
 }
