@@ -1,6 +1,6 @@
 import './employees-list-item.css'
 
-export default function EmployeesListItem({name, salary, onDelete, onToggleProp, increase, rise}) {
+export default function EmployeesListItem({name, salary, id, onDelete, onToggleProp, onChangeSalary, increase, rise}) {
     const classList = "list-group-item d-flex justify-content-between" + (increase ? ' increase' : '') + (rise ? ' like' : '');
 
     return (
@@ -10,7 +10,10 @@ export default function EmployeesListItem({name, salary, onDelete, onToggleProp,
                 data-toggle="rise"
                 onClick={onToggleProp}>{name}</span>
 
-            <input type="text" className="list-group-item-input" defaultValue={salary + '$'}/>
+            <input  type="text" 
+                    className="list-group-item-input" 
+                    defaultValue={salary + '$'}
+                    onChange={(e) => onChangeSalary(id, parseInt(e.target.value))}/>
 
             <div className="d-flex justify-content-center align-items-center">
                 <button 
